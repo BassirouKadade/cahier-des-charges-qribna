@@ -1,0 +1,24 @@
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headheight=14pt]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\linespread{1.1}          % interligne proche du 1,15 de Word
+\hyphenpenalty=10000      % aucun mot coupé en fin de ligne
+\exhyphenpenalty=10000
+\emergencystretch=3em
+% Sans césure, un texte justifié élargit légèrement certaines lignes : on ne
+% signale que les espacements vraiment visibles (badness > 4000).
+\hbadness=4000
+
+% En-tête et pied de page (les macros \doc... sont définies dans src/data/meta.tex)
+% Style autonome : il redéfinit tous ses champs, donc il n'est pas perturbé
+% par les autres styles (ex. « tdm » dans commands.tex).
+\fancypagestyle{cdc}{%
+  \fancyhf{}%
+  \fancyhead[L]{\small\docshorttitle}%
+  \fancyhead[R]{\small Version~\docversion}%
+  \fancyfoot[C]{\small Page~\thepage{} sur~\pageref*{LastPage}}%
+  \renewcommand{\headrulewidth}{0.4pt}%
+  \renewcommand{\headrule}{%
+    {\color{rulegray}\hrule height\headrulewidth width\headwidth}\vskip-\headrulewidth}%
+  \renewcommand{\footrulewidth}{0pt}}
+\pagestyle{cdc}

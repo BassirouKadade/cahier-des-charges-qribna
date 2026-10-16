@@ -1,0 +1,309 @@
+% =============================================================================
+% Commandes de mise en forme du cahier des charges.
+% Les fichiers de src/sections/ n'utilisent QUE ces commandes : aucune mise en
+% forme écrite en dur dans les sections.
+% =============================================================================
+
+% --- Propriétés du PDF -------------------------------------------------------
+\AtBeginDocument{\hypersetup{pdftitle={\docshorttitle}, pdfauthor={\docauthor}}}
+
+% --- Titres --------------------------------------------------------------------
+% Sobres : texte noir, gras, aucune icône, aucun filet.
+
+% \cdcsection{Titre} : section numérotée « 1. Titre », gras 14 pt.
+\titleformat{\section}[hang]{\fontsize{14}{17}\selectfont\bfseries}{\thesection.}{0.5em}{}
+\titleformat{name=\section,numberless}[hang]{\fontsize{14}{17}\selectfont\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{18pt plus 4pt minus 2pt}{8pt}
+\newcommand{\cdcsection}[1]{\section{#1}}
+
+% \cdcsectionnonnum{Titre} : même style, sans numéro, présente dans la table
+% des matières (historique, glossaire, annexes).
+\newcommand{\cdcsectionnonnum}[1]{%
+  \phantomsection
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}}
+
+% \cdcpartie{Titre} : regroupe plusieurs sections, numérotée en chiffres
+% romains (« PARTIE I – TITRE »), en capitales grasses dans le texte comme
+% dans la table des matières. Chaque partie commence sur une nouvelle page.
+\newcounter{cdcpartie}
+\newcommand{\CDCpartielibelle}[1]{Partie~\Roman{cdcpartie}~– #1}
+\newcommand{\cdcpartie}[1]{%
+  \stepcounter{cdcpartie}%
+  \clearpage\phantomsection
+  \addcontentsline{toc}{part}{\texorpdfstring{\MakeUppercase{\CDCpartielibelle{#1}}}{\CDCpartielibelle{#1}}}%
+  \noindent{\fontsize{12}{15}\selectfont\bfseries\MakeUppercase{\CDCpartielibelle{#1}}}\par\nopagebreak}
+
+% \cdcsubsection{Titre} : « 1.1 Titre », gras noir 12 pt.
+\titleformat{\subsection}{\fontsize{12}{14.5}\selectfont\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\subsection}{0pt}{12pt plus 3pt minus 2pt}{4pt}
+\newcommand{\cdcsubsection}[1]{\subsection{#1}}
+
+% \cdcannexe{Titre} : « Annexe A – Titre », à placer après \cdcsectionnonnum{Annexes}.
+% Style d'une sous-section ; dans la table des matières, aligné sur les sections.
+\newcounter{cdcannexe}
+\newcommand{\cdcannexe}[1]{%
+  \stepcounter{cdcannexe}%
+  \phantomsection
+  \subsection*{Annexe~\Alph{cdcannexe}~– #1}%
+  \addcontentsline{toc}{subsection}{Annexe~\Alph{cdcannexe}~– #1}}
+
+% --- Page de garde --------------------------------------------------------------
+% PDF pleine page (\docgarde, défini dans meta.tex), sans en-tête ni numéro.
+% Numérotation « Alph » sur la garde, puis arabe à partir de 1 pour la table des
+% matières (évite les ancres hyperref en double).
+\newcommand{\cdcpagedegarde}{%
+  \pagenumbering{Alph}%
+  \includepdf[pages=1]{\docgarde}%
+  \pagenumbering{arabic}}
+
+% --- Table des matières -----------------------------------------------------------
+% Titre centré en gras ; parties en capitales grasses sur un filet fin ; sections en
+% gras avec points de conduite ; sous-sections en romain, en retrait.
+% Aucune icône.
+\fancypagestyle{tdm}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\small Page~\thepage{} sur~\pageref*{LastPage}}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}}
+
+\contentsmargin{2.2em}
+\titlecontents{part}[0pt]
+  {\addvspace{10pt}\bfseries}
+  {}{}{}
+  [\endgraf\vspace{2pt}{\color{rulegray}\hrule height 0.4pt}\vspace{1pt}]
+\titlecontents{section}[1.8em]
+  {\addvspace{3pt}\bfseries}
+  {\contentslabel{1.8em}}
+  {\hspace*{-1.8em}}
+  {\mdseries\titlerule*[0.6pc]{.}\bfseries\contentspage}
+\titlecontents{subsection}[4.3em]
+  {\addvspace{1pt}}
+  {\contentslabel{2.5em}}
+  {\hspace*{-2.5em}}
+  {\titlerule*[0.6pc]{.}\contentspage}
+
+\newcommand{\cdctabledesmatieres}{%
+  \clearpage
+  \pagestyle{tdm}%
+  \phantomsection\pdfbookmark[1]{Table des matières}{tdm}%
+  {\centering\fontsize{18}{22}\selectfont\bfseries Table des matières\par}%
+  \vspace{10pt}%
+  {\setlength{\parskip}{0pt}\csname @starttoc\endcsname{toc}}%
+  \clearpage
+  \pagestyle{cdc}}
+
+% --- En-tête de tableau (marine, gras) ------------------------------------------
+\newcommand{\cdcth}[1]{\textcolor{primary}{\textbf{#1}}}
+
+% --- Priorités MoSCoW (distinguées par le texte et la graisse, pas la couleur) --
+\newcommand{\prioMust}{\textbf{Must have}}
+\newcommand{\prioShould}{\textbf{Should have}}
+\newcommand{\prioCould}{Could have}
+\newcommand{\prioWont}{\textit{Won’t have}}
+
+% --- Fiche descriptive d'une fonction (grille du professeur) ---------------------
+% \fichefonction{ID}{Intitulé}{Objectif}{Description}{Contraintes / règles de gestion}{Priorité}
+% Tableau insécable : en-tête « Fonction ID – Intitulé » en marine, puis les
+% quatre lignes de la grille (libellés en gras dans la colonne de gauche).
+\newlength{\cdccollibelle}\setlength{\cdccollibelle}{3.6cm}
+\newcommand{\fichefonction}[6]{%
+  \par\addvspace{8pt}\noindent
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash\bfseries}p{\cdccollibelle}%
+                                  >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \multicolumn{2}{@{}l@{}}{\cdcth{Fonction #1~– #2}} \\
+    \midrule
+    Objectif & #3 \\ \addlinespace[3pt]
+    Description & #4 \\ \addlinespace[3pt]
+    Contraintes / règles de gestion & #5 \\ \addlinespace[3pt]
+    Niveau de priorité & #6 \\
+    \bottomrule
+  \end{tabularx}\par\addvspace{8pt}}
+
+% --- Tableau d'exigences (longtable, en-tête répété) ---------------------------
+% \begin{tableexigences}
+%   EF-01 & Intitulé & \prioMust & Source \\
+% \end{tableexigences}
+\newlength{\cdccolid}\setlength{\cdccolid}{1.7cm}
+\newlength{\cdccolprio}\setlength{\cdccolprio}{2.4cm}
+\newlength{\cdccolsource}\setlength{\cdccolsource}{3cm}
+\newlength{\cdccolexig}
+
+\newenvironment{tableexigences}{%
+  \setlength{\cdccolexig}{\dimexpr\linewidth-\cdccolid-\cdccolprio-\cdccolsource-6\tabcolsep\relax}%
+  \renewcommand{\arraystretch}{1.15}%
+  \setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}%
+  \begin{longtable}{@{}>{\raggedright\arraybackslash}p{\cdccolid}%
+                      >{\raggedright\arraybackslash}p{\cdccolexig}%
+                      >{\raggedright\arraybackslash}p{\cdccolprio}%
+                      >{\raggedright\arraybackslash}p{\cdccolsource}@{}}
+    \toprule
+    \cdcth{ID} & \cdcth{Exigence} & \cdcth{Priorité} & \cdcth{Source} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \cdcth{ID} & \cdcth{Exigence} & \cdcth{Priorité} & \cdcth{Source} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{4}{r@{}}{\small\textit{Suite page suivante}} \\
+    \endfoot
+    \bottomrule
+    \endlastfoot
+}{%
+  \end{longtable}}
+
+% --- Tableau générique (booktabs, en-tête marine répété, sécable) ----------------
+% \begin{cdctableau}{colonnes}{\cdcth{A} & \cdcth{B}}
+%   cellule & cellule \\
+% \end{cdctableau}
+% Colonnes : P{largeur} = largeur fixe ; L = largeur libre, les colonnes L se
+% partagent la place restante (calculée ci-dessous). Uniquement P et L.
+% (xltabular est évité : avec booktabs, il provoque « Infinite glue shrinkage »
+% aux coupures de page.)
+\newlength{\cdcreste}
+\newlength{\CDCfixe}
+\newcount\CDCnL
+\newcount\CDCncol
+\makeatletter
+\def\CDCstop{\CDCstop}
+\def\CDCscan#1{%
+  \ifx#1\CDCstop\expandafter\@gobble\else\expandafter\@firstofone\fi
+  {\advance\CDCncol\@ne
+   \ifx#1P\expandafter\CDCscanP\else\advance\CDCnL\@ne\expandafter\CDCscan\fi}}
+\def\CDCscanP#1{\advance\CDCfixe#1\relax\CDCscan}
+\newcommand{\CDCcalculreste}[1]{%
+  \setlength{\CDCfixe}{0pt}\CDCnL=0 \CDCncol=0
+  \CDCscan#1\CDCstop
+  \setlength{\cdcreste}{\dimexpr\linewidth-\CDCfixe-2\tabcolsep*(\CDCncol-1)\relax}%
+  \ifnum\CDCnL>1 \divide\cdcreste\CDCnL\fi}
+\makeatother
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{\cdcreste}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newenvironment{cdctableau}[2]{%
+  \CDCcalculreste{#1}%
+  \setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}%
+  \begin{longtable}{@{}#1@{}}
+    \toprule #2 \\ \midrule \endfirsthead
+    \toprule #2 \\ \midrule \endhead
+    \midrule \endfoot
+    \bottomrule \endlastfoot}%
+  {\end{longtable}}
+
+% \cdcsep : espace entre deux rangées d'un tableau (en début de rangée).
+\newcommand{\cdcsep}{\addlinespace[4pt]}
+% \groupeexigences{Titre} : rangée d'intertitre dans tableexigences.
+\newcommand{\groupeexigences}[1]{\addlinespace[4pt]\multicolumn{4}{@{}l}{\textbf{#1}}}
+
+% Liste à puces à l'intérieur d'une cellule de tableau (sans espace parasite).
+% La minipage [t] aligne la première puce sur la ligne de base de la rangée.
+\newenvironment{cdccellitems}%
+  {\begin{minipage}[t]{\linewidth}\raggedright
+   \begin{itemize}[label=\textbullet, leftmargin=1em, itemsep=0pt, parsep=0pt,
+     topsep=0pt, partopsep=0pt]}%
+  {\end{itemize}\end{minipage}}
+
+% --- Étapes numérotées (scénarios) ----------------------------------------------
+\newenvironment{cdcetapes}%
+  {\begin{enumerate}[label=\arabic*., leftmargin=1.8em, itemsep=3pt, parsep=0pt, topsep=2pt]}%
+  {\end{enumerate}}
+
+% --- Maquettes (dessins TikZ placés dans assets/maquettes/) ------------------------
+% Filaires, en noir et gris uniquement, texte en 10 pt minimum.
+% \cdcmaquette{assets/maquettes/fichier}{Légende}            : une maquette centrée
+% \cdcmaquettes{fichier1}{Légende 1}{fichier2}{Légende 2}     : deux côte à côte
+\tikzset{
+  mq ecran/.style={draw=black, line width=0.8pt, rounded corners=8pt},
+  mq barre/.style={fill=black!8, draw=none},
+  mq texte/.style={anchor=north west, inner sep=0pt, font=\small, align=left},
+  mq titre/.style={mq texte, font=\small\bfseries},
+  mq gris/.style={mq texte, text=black!60},
+  mq champ/.style={draw=black!45, anchor=north west, minimum height=0.62cm,
+    inner xsep=5pt, font=\small, text=black!60, align=left, text width=5.55cm},
+  mq bouton/.style={fill=black, text=white, font=\small\bfseries,
+    rounded corners=3pt, minimum height=0.7cm, inner xsep=6pt},
+  mq bouton2/.style={draw=black, text=black, font=\small\bfseries,
+    rounded corners=3pt, minimum height=0.7cm, inner xsep=6pt},
+  mq cadre/.style={draw=black!45, rounded corners=3pt},
+  mq photo/.style={draw=black!45, fill=black!5},
+}
+% \mqphoto{x}{y}{taille} : vignette d'image (rectangle barré).
+\newcommand{\mqphoto}[3]{%
+  \draw[mq photo] (#1,#2) rectangle ++(#3,-#3);
+  \draw[black!30] (#1,#2) -- ++(#3,-#3) (#1,#2-#3) -- ++(#3,#3);}
+
+\newcounter{cdcmaquette}
+\newcommand{\CDClegendemaquette}[1]{%
+  \stepcounter{cdcmaquette}%
+  {\small\textbf{Maquette~\arabic{cdcmaquette}}~– #1}}
+\newcommand{\cdcmaquette}[2]{%
+  \par\addvspace{10pt}%
+  \begin{center}
+    \input{#1}\par\vspace{6pt}%
+    \CDClegendemaquette{#2}
+  \end{center}
+  \par\addvspace{10pt}}
+\newcommand{\cdcmaquettes}[4]{%
+  \par\addvspace{10pt}\noindent
+  \begin{minipage}[t]{0.49\linewidth}\centering
+    \input{#1}\par\vspace{6pt}\CDClegendemaquette{#2}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.49\linewidth}\centering
+    \input{#3}\par\vspace{6pt}\CDClegendemaquette{#4}
+  \end{minipage}
+  \par\addvspace{10pt}}
+
+% --- Encadrés note et attention -------------------------------------------------
+% Fond blanc, filet marine à gauche, sans icône.
+\tcbset{cdcencadre/.style={enhanced, breakable, colback=white, colframe=primary,
+  boxrule=0pt, leftrule=2pt, arc=0pt, outer arc=0pt,
+  left=8pt, right=0pt, top=3pt, bottom=3pt, before skip=8pt, after skip=8pt}}
+
+\newtcolorbox{note}{cdcencadre,
+  before upper={\textbf{Note}~:\ }}
+\newtcolorbox{attention}{cdcencadre,
+  before upper={\textbf{Attention}~:\ }}
+
+% --- Listes compactes -----------------------------------------------------------
+\newenvironment{cdcitems}%
+  {\begin{itemize}[label=\textbullet, leftmargin=1.1em, itemsep=3pt, parsep=0pt, topsep=2pt]}%
+  {\end{itemize}}
+% Sous-liste à tirets, à placer dans un \item de cdcitems ou de cdcetapes.
+\newenvironment{cdcsousitems}%
+  {\begin{itemize}[label=–, leftmargin=1.1em, itemsep=0pt, parsep=0pt, topsep=1pt]}%
+  {\end{itemize}}
+
+% --- Liste de définitions (glossaire) ----------------------------------------------
+% \begin{cdcdefinitions}[largeur des libellés] \item[Terme] Définition. \end{cdcdefinitions}
+% Largeur par défaut : 4.6cm (glossaire).
+\newenvironment{cdcdefinitions}[1][4.6cm]%
+  {\begin{description}[style=multiline, leftmargin=#1, labelwidth=\dimexpr#1-0.2cm\relax,
+     font=\normalfont\bfseries, itemsep=2pt, topsep=2pt]}%
+  {\end{description}}
+
+% --- Intertitre de paragraphe ---------------------------------------------------
+% \cdcintertitre{Titre} : gras, non numéroté, absent de la table des matières.
+\newcommand{\cdcintertitre}[1]{\par\addvspace{6pt}\noindent\textbf{#1}\par\nopagebreak}
+
+% --- Ligne « Libellé : texte » ---------------------------------------------------
+\newcommand{\cdcdetail}[2]{\par\noindent\textbf{#1}~: #2\par}
+
+% --- Historique des versions ------------------------------------------------------
+% \historique{
+%   \versionligne{0.1}{15/10/2026}{Auteur}{Création du document}
+% }
+\newcommand{\versionligne}[4]{#1 & #2 & #3 & #4 \\}
+\newcommand{\historique}[1]{%
+  \par\addvspace{4pt}\noindent
+  \begin{tabularx}{\linewidth}{@{}l l l >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \cdcth{Version} & \cdcth{Date} & \cdcth{Auteur} & \cdcth{Modifications} \\
+    \midrule
+    #1
+    \bottomrule
+  \end{tabularx}\par\addvspace{4pt}}
+
+% --- Liens et e-mails (bleu de lien) ---------------------------------------------
+\newcommand{\cdclien}[1]{\textcolor{lien}{\url{#1}}}
+\newcommand{\cdcemail}[1]{\href{mailto:#1}{\textcolor{lien}{#1}}}

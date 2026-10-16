@@ -1,0 +1,53 @@
+\cdcsection{Contraintes et exigences}
+
+\cdcsubsection{Exigences non fonctionnelles}
+
+Les exigences non fonctionnelles fixent la qualité attendue de la plateforme. Elles s’appliquent à toutes les fonctions, dès la version~1.
+
+\begin{tableexigences}
+  \groupeexigences{Sécurité} \\
+  ENF-01 & Authentification obligatoire pour tous les espaces, sauf la recherche de boutiques et la page de suivi accessible par numéro de suivi & \prioMust & F1 \\
+  ENF-02 & Contrôle d’accès selon le rôle et cloisonnement des données entre boutiques & \prioMust & F1, F12 \\
+  ENF-03 & Mots de passe stockés uniquement sous forme hachée et salée & \prioMust & F1 \\
+  ENF-04 & Échanges entre navigateur et serveur chiffrés (HTTPS) & \prioMust & Toutes \\
+  ENF-05 & Aucune donnée de carte bancaire stockée par la plateforme & \prioMust & F6 \\
+  ENF-06 & Journalisation de l’auteur et de l’heure de chaque changement de statut et de chaque paiement & \prioMust & F2, F6 \\
+  ENF-07 & Photos de l’état initial non modifiables après validation par le client & \prioMust & F2 \\
+  \groupeexigences{Confidentialité} \\
+  ENF-08 & Traitement des données personnelles conforme à la loi n°~09-08 & \prioMust & Section~\ref{sec:reglementaire} \\
+  ENF-09 & Consentement explicite du client avant toute géolocalisation et tout envoi WhatsApp & \prioMust & F3, F4 \\
+  ENF-10 & Statistiques de l’observatoire agrégées, sans aucune donnée permettant d’identifier un client & \prioMust & F11 \\
+  \groupeexigences{Ergonomie et accessibilité} \\
+  ENF-11 & Interface adaptée aux écrans de smartphone comme d’ordinateur & \prioMust & Toutes \\
+  ENF-12 & Affichage de droite à gauche pour l’interface en arabe & \prioMust & F13 \\
+  ENF-13 & Enregistrement complet d’un appareil, photos comprises, réalisable depuis un smartphone & \prioMust & F2 \\
+  ENF-14 & Contrastes, tailles de texte et navigation conformes au niveau AA des WCAG~2.1 & \prioShould & Toutes \\
+  ENF-15 & Compression des photos avant envoi pour limiter la consommation de données mobiles & \prioShould & F2 \\
+  \groupeexigences{Fiabilité et maintenabilité} \\
+  ENF-16 & Sauvegarde régulière des données et procédure de restauration testée & \prioMust & Toutes \\
+  ENF-17 & Architecture modulaire permettant d’ajouter les fonctions de la version~2 sans refonte de la version~1 & \prioMust & Section~\ref{sec:perimetre} \\
+  ENF-18 & Tests automatisés sur les règles de gestion critiques (statuts, paiements, commissions) & \prioMust & F2, F6, F7 \\
+  ENF-19 & Services externes (WhatsApp, cartographie, paiement) isolés derrière des interfaces dédiées pour pouvoir changer de fournisseur & \prioShould & F3, F4, F6 \\
+\end{tableexigences}
+
+\cdcsubsection{Contraintes techniques}
+
+Qribna est une plateforme web, accessible depuis un navigateur sur ordinateur comme sur smartphone, sans aucune installation. Elle s’appuie sur trois services externes, ce qui impose les contraintes suivantes.
+
+\begin{cdcitems}
+  \item \textbf{Notifications.} Les messages passent par l’API officielle de WhatsApp Business. Ceux qui sont envoyés à l’initiative de la plateforme utilisent des modèles validés au préalable par WhatsApp.
+  \item \textbf{Cartographie.} Un service de cartographie tiers fournit la carte interactive, la conversion des adresses en coordonnées et le calcul d’itinéraire.
+  \item \textbf{Paiement électronique.} Le prestataire, disponible au Maroc, est intégré par son interface de programmation. Le statut d’un paiement n’est mis à jour qu’à réception de sa confirmation.
+\end{cdcitems}
+
+Par ailleurs, les photos sont conservées dans un espace de stockage sécurisé et rattachées chacune à une réparation. L’interface gère les traductions en français et en arabe ainsi que l’écriture de droite à gauche. Enfin, le développement en deux versions impose que la version~2 s’appuie sur la version~1 sans la remettre en cause.
+
+\cdcsubsection{Contraintes réglementaires}
+\label{sec:reglementaire}
+
+\begin{cdcitems}
+  \item \textbf{Protection des données personnelles.} La plateforme traite des noms, des numéros de téléphone, des positions et des photos d’appareils. Ce traitement respecte la loi n°~09-08 relative à la protection des personnes physiques à l’égard du traitement des données à caractère personnel. Il fait l’objet des formalités préalables auprès de la CNDP, et les utilisateurs disposent de droits d’accès, de rectification et d’opposition.
+  \item \textbf{Paiement électronique.} Les paiements électroniques sont confiés à un prestataire agréé par Bank Al-Maghrib.
+  \item \textbf{Information du consommateur.} Les prix estimés et les délais indicatifs sont présentés clairement comme tels, conformément à la loi n°~31-08 édictant des mesures de protection du consommateur.
+  \item \textbf{Documents contractuels.} Lors de son inscription, chaque utilisateur accepte les conditions générales d’utilisation et la politique de confidentialité de la plateforme.
+\end{cdcitems}

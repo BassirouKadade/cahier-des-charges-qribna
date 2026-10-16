@@ -1,0 +1,238 @@
+# Projet de génie logiciel : Plateforme intelligente de gestion et de recherche de boutiques de réparation de téléphones au Maroc
+
+## 1. Présentation générale du projet
+
+Notre projet consiste à développer une plateforme web permettant de digitaliser la gestion des boutiques de réparation de téléphones au Maroc et de faciliter la recherche de réparateurs pour les clients.
+
+Aujourd’hui, de nombreuses petites boutiques utilisent encore le papier ou la mémoire du réparateur pour gérer les appareils reçus, les réparations, les paiements et les informations des clients. Cela peut entraîner des pertes d’informations, des retards, des conflits concernant l’état initial des appareils et un manque de visibilité sur les revenus de la boutique.
+
+De leur côté, les clients rencontrent des difficultés pour trouver une boutique adaptée à leur problème, connaître le prix estimé d’une réparation, suivre l’avancement des travaux et choisir un moyen de paiement pratique.
+
+**Notre solution est une plateforme unique qui relie les clients, les réparateurs et les propriétaires de boutiques**, en combinant la gestion des réparations, la géolocalisation, le suivi par WhatsApp, le paiement et l’analyse statistique du marché.
+
+## 2. Les objectifs du projet
+
+- Digitaliser la gestion des boutiques de réparation.
+- Simplifier le suivi des réparations pour les clients.
+- Garantir davantage de transparence grâce aux photos et à la validation de l’état initial du téléphone.
+- Permettre aux clients de trouver les boutiques les plus adaptées à leur problème.
+- Fournir une estimation indicative du prix et du délai de réparation.
+- Proposer plusieurs moyens de paiement, notamment en espèces et par voie électronique.
+- Faciliter la gestion des revenus, des paiements et des commissions.
+- Analyser les prix et les tendances du marché de la réparation au Maroc.
+
+## 3. Les acteurs de l’application
+
+### A. Le client
+- Créer un compte ou rechercher une boutique.
+- Décrire la panne de son téléphone.
+- Consulter les prix estimés et les boutiques disponibles.
+- Choisir une boutique et, éventuellement, réserver un rendez-vous.
+- Suivre la réparation et recevoir des notifications.
+- Choisir son moyen de paiement.
+- Consulter ses reçus et son historique de réparations.
+- Évaluer la boutique après la réparation.
+
+### B. Le propriétaire de la boutique
+- Créer et gérer sa boutique.
+- Ajouter et gérer les comptes des réparateurs.
+- Consulter les réparations en cours et terminées.
+- Définir les tarifs et les services proposés.
+- Suivre les paiements, les revenus et les commissions.
+- Consulter les statistiques et les performances de son activité.
+
+### C. Le réparateur
+- Enregistrer les téléphones reçus.
+- Décrire les pannes et photographier l’état initial de l’appareil.
+- Faire valider les informations par le client.
+- Mettre à jour les étapes de la réparation.
+- Enregistrer le coût final et les pièces utilisées.
+- Indiquer le statut du paiement.
+
+### D. L’administrateur de la plateforme
+- Gérer les utilisateurs et les boutiques.
+- Superviser les signalements et les avis.
+- Contrôler les informations publiées.
+- Assurer le bon fonctionnement général de la plateforme.
+
+## 4. Les fonctionnalités principales
+
+### 4.1. Gestion des boutiques et des utilisateurs
+- Inscription, connexion et gestion des profils.
+- Création et configuration des boutiques.
+- Gestion des réparateurs et de leurs autorisations.
+- Gestion des adresses, des horaires et des services proposés.
+
+### 4.2. Gestion des réparations
+- Enregistrement de chaque appareil reçu.
+- Identification du modèle et description de la panne.
+- Prise de photos de l’état initial du téléphone.
+- Validation de l’état de l’appareil par le client.
+- Attribution d’un numéro de suivi unique.
+- Mise à jour du statut : reçu, en diagnostic, en réparation, prêt à récupérer ou livré.
+
+### 4.3. Suivi des réparations par WhatsApp
+- Envoi de notifications lors des changements importants de statut.
+- Communication des informations essentielles au client.
+- Consultation de l’avancement de la réparation sans installer d’application mobile.
+
+### 4.4. Géolocalisation et recherche des boutiques
+- Affichage des boutiques sur une carte interactive.
+- Recherche selon la position du client.
+- Filtrage par type de panne et services disponibles.
+- Comparaison selon la distance, les prix estimés, les délais et les avis.
+- Affichage de l’itinéraire vers la boutique sélectionnée.
+
+L’objectif est de trouver la boutique la plus adaptée au besoin du client, et pas seulement la plus proche.
+
+### 4.5. Diagnostic préliminaire intelligent
+- Sélection du modèle de téléphone.
+- Description des symptômes par le client.
+- Proposition de causes possibles.
+- Estimation indicative du prix et du délai.
+- Recommandation de boutiques capables de traiter le problème.
+
+Le diagnostic reste préliminaire : le réparateur confirme la panne, le prix définitif et le délai après examen de l’appareil.
+
+### 4.6. Gestion des paiements
+
+La plateforme proposera deux grandes catégories de paiement afin de s’adapter aux habitudes des clients marocains.
+
+**A. Paiement en espèces**
+- Le client paie directement à la boutique.
+- Le réparateur ou le propriétaire enregistre le paiement dans le système.
+- Le statut passe à « payé » après confirmation.
+- Un reçu numérique peut être généré.
+
+**B. Paiement électronique**
+- Le client peut payer en ligne par un moyen de paiement électronique compatible avec la plateforme et disponible au Maroc.
+- Le système enregistre la transaction et son statut.
+- Une confirmation est affichée lorsque le paiement est confirmé par le prestataire de paiement.
+- Un reçu numérique est généré et associé à la réparation.
+
+**C. Suivi et gestion des transactions**
+- Affichage du montant total de la réparation.
+- Historique des paiements.
+- Statuts : en attente, payé, échoué ou remboursé, selon le moyen de paiement.
+- Distinction entre paiements en espèces et paiements électroniques.
+- Consultation des montants encaissés par boutique.
+- Association de chaque paiement à une réparation précise.
+
+Les paiements électroniques devront passer par un prestataire compatible et sécurisé. Les commissions de la plateforme, si elles existent, devront être définies clairement. Le système ne doit pas considérer un paiement en espèces comme confirmé avant sa déclaration par la boutique.
+
+### 4.7. Gestion financière et des commissions
+- Calcul automatique des commissions du propriétaire selon les règles définies.
+- Suivi du chiffre d’affaires.
+- Consultation des revenus générés par chaque réparateur.
+- Historique des transactions et des réparations payées.
+- Rapports financiers par période et par moyen de paiement.
+
+### 4.8. Comparaison des boutiques
+- Comparaison des prix estimés.
+- Comparaison des délais annoncés.
+- Consultation des notes et des avis.
+- Comparaison de la distance et des services proposés.
+- Aide au choix de la boutique selon les besoins et le budget du client.
+
+### 4.9. Avis et évaluations
+- Possibilité de noter une boutique après une réparation.
+- Publication de commentaires.
+- Consultation des évaluations des autres clients.
+- Modération des avis signalés.
+
+### 4.10. Historique et garantie des réparations
+- Conservation de l’historique des réparations.
+- Génération de reçus numériques.
+- Enregistrement des conditions et de la durée de garantie.
+- Consultation des anciennes interventions.
+- Rappels éventuels avant la fin de la garantie.
+
+### 4.11. Observatoire des prix et statistiques du marché
+Cette fonctionnalité constitue l’un des éléments distinctifs du projet.
+
+À partir des données suffisamment nombreuses et fiables, la plateforme pourra analyser :
+- Les prix moyens de réparation par ville.
+- Les pannes les plus fréquentes.
+- Les délais moyens de réparation.
+- Les modèles de téléphones les plus réparés.
+- Les différences de prix selon les types de pannes et les régions.
+
+Ces statistiques aideront les clients à mieux comprendre les prix du marché et les propriétaires à prendre de meilleures décisions.
+
+Les données seront présentées de manière agrégée afin de protéger les informations personnelles des clients.
+
+### 4.12. Tableau de bord du propriétaire
+- Nombre de réparations reçues, en cours et terminées.
+- Revenus par période.
+- Répartition des paiements en espèces et électroniques.
+- Commissions calculées.
+- Performances des réparateurs.
+- Services les plus demandés.
+- Délais moyens et réparations en retard.
+
+### 4.13. Interface adaptée au marché marocain
+- Interface en français et en arabe.
+- Adaptation progressive aux usages de la darija.
+- Notifications via WhatsApp.
+- Paiement en espèces ou par voie électronique.
+- Prise en compte des besoins des petites boutiques marocaines.
+
+## 5. Exemple concret de fonctionnement
+
+Imaginons un client à Rabat dont le téléphone ne charge plus.
+
+1. Il ouvre la plateforme et sélectionne son modèle de téléphone.
+2. Il décrit son problème et obtient une estimation indicative du prix.
+3. La plateforme affiche les boutiques proches capables de réparer ce type de panne.
+4. Il compare les prix, les avis, les délais et les distances, puis choisit une boutique.
+5. Le réparateur reçoit le téléphone, enregistre ses informations et photographie son état initial.
+6. Le client valide les informations et reçoit un numéro de suivi.
+7. Le réparateur effectue le diagnostic et confirme le prix et le délai définitifs.
+8. Le client reçoit les mises à jour par WhatsApp.
+9. Lorsque la réparation est terminée, le client récupère son téléphone.
+10. Il choisit son moyen de paiement : espèces à la boutique ou paiement électronique si celui-ci est disponible.
+11. Le paiement est enregistré et un reçu numérique est généré.
+12. Le propriétaire consulte les revenus, les commissions et les statistiques de son activité.
+13. Le client peut enfin laisser un avis sur la boutique.
+
+## 6. Les éléments différenciateurs du projet
+
+- Suivi des réparations par WhatsApp.
+- Photos et validation de l’état initial du téléphone.
+- Recherche géolocalisée selon le type de panne.
+- Diagnostic préliminaire et estimation du prix.
+- Paiement en espèces et paiement électronique.
+- Gestion financière et calcul des commissions.
+- Historique et suivi des garanties.
+- Observatoire statistique des prix et des réparations au Maroc.
+- Interface adaptée aux habitudes locales.
+
+## 7. Périmètre conseillé pour la réalisation
+
+Pour garder un projet réalisable dans le cadre du génie logiciel, le développement peut être organisé en deux versions.
+
+**Version 1 — Fonctionnalités essentielles**
+- Gestion des comptes, boutiques et réparateurs.
+- Gestion et suivi des réparations.
+- Photos et validation de l’état initial.
+- Numéro de suivi client.
+- Gestion des paiements en espèces.
+- Enregistrement des paiements électroniques, si le prestataire est intégré.
+- Calcul des commissions.
+- Géolocalisation et recherche de boutiques.
+
+**Version 2 — Fonctionnalités avancées**
+- Notifications WhatsApp automatisées.
+- Diagnostic préliminaire intelligent.
+- Comparaison avancée des boutiques et avis clients.
+- Paiement électronique intégré avec confirmation automatique.
+- Historique et gestion des garanties.
+- Observatoire des prix et tableau de bord statistique avancé.
+
+## 8. Conclusion
+
+Notre projet vise à créer une plateforme adaptée aux réalités des boutiques de réparation de téléphones au Maroc. Elle permettra aux réparateurs de mieux gérer leur activité, aux propriétaires de contrôler leurs revenus et aux clients de trouver facilement un service adapté à leur problème.
+
+En combinant la gestion des réparations, la géolocalisation, le suivi WhatsApp, les paiements en espèces et électroniques et l’analyse statistique du marché, nous proposons une solution complète qui relie les clients, les boutiques et les données du secteur.
+
+**L’idée centrale est de réunir trois dimensions dans une seule plateforme : la gestion professionnelle des boutiques, l’expérience simplifiée des clients et l’analyse du marché marocain.**

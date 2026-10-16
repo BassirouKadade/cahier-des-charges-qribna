@@ -1,0 +1,314 @@
+\cdcpartie{Expression du besoin}
+
+\cdcsection{Description fonctionnelle des besoins}
+
+Cette section décrit ce que doit faire Qribna, sans entrer dans les choix de réalisation. Elle part des fonctions principales, les décline en sous-fonctions, puis détaille chacune d’elles selon la même grille (objectif, description, contraintes et règles de gestion, niveau de priorité).
+
+\cdcsubsection{Fonctions principales et sous-fonctions}
+
+Les besoins se répartissent en treize fonctions principales, identifiées de F1 à F13. La version indiquée entre parenthèses correspond au lot de livraison défini dans le périmètre (section~\ref{sec:perimetre}).
+
+\begin{cdcitems}
+  \item \textbf{F1 – Gestion des boutiques et des utilisateurs} (V1)
+  \begin{cdcsousitems}
+    \item Inscription, connexion et gestion des profils
+    \item Création et configuration des boutiques
+    \item Gestion des réparateurs et de leurs autorisations
+    \item Gestion des adresses, des horaires et des services proposés
+  \end{cdcsousitems}
+  \item \textbf{F2 – Gestion des réparations} (V1)
+  \begin{cdcsousitems}
+    \item Enregistrement de chaque appareil reçu
+    \item Identification du modèle et description de la panne
+    \item Prise de photos de l’état initial et validation par le client
+    \item Attribution d’un numéro de suivi unique
+    \item Mise à jour du statut de la réparation
+  \end{cdcsousitems}
+  \item \textbf{F3 – Suivi des réparations par WhatsApp} (V1 et V2)
+  \begin{cdcsousitems}
+    \item Consultation de l’avancement sans installer d’application
+    \item Notifications lors des changements importants de statut
+    \item Communication des informations essentielles au client
+  \end{cdcsousitems}
+  \item \textbf{F4 – Géolocalisation et recherche des boutiques} (V1)
+  \begin{cdcsousitems}
+    \item Carte interactive et recherche selon la position du client
+    \item Filtrage par type de panne et services disponibles
+    \item Itinéraire vers la boutique sélectionnée
+  \end{cdcsousitems}
+  \item \textbf{F5 – Diagnostic préliminaire intelligent} (V2)
+  \begin{cdcsousitems}
+    \item Sélection du modèle et description des symptômes
+    \item Proposition de causes possibles
+    \item Estimation indicative du prix et du délai
+    \item Recommandation de boutiques
+  \end{cdcsousitems}
+  \item \textbf{F6 – Gestion des paiements} (V1 et V2)
+  \begin{cdcsousitems}
+    \item Paiement en espèces
+    \item Paiement électronique
+    \item Suivi et gestion des transactions
+  \end{cdcsousitems}
+  \item \textbf{F7 – Gestion financière et des commissions} (V1)
+  \begin{cdcsousitems}
+    \item Calcul des commissions
+    \item Suivi du chiffre d’affaires et des revenus par réparateur
+    \item Rapports financiers
+  \end{cdcsousitems}
+  \item \textbf{F8 – Comparaison des boutiques} (V2)
+  \begin{cdcsousitems}
+    \item Comparaison des prix, des délais, des distances et des services
+    \item Aide au choix selon les besoins et le budget
+  \end{cdcsousitems}
+  \item \textbf{F9 – Avis et évaluations} (V2)
+  \begin{cdcsousitems}
+    \item Notation et commentaires
+    \item Modération des avis signalés
+  \end{cdcsousitems}
+  \item \textbf{F10 – Historique et garantie des réparations} (V2)
+  \begin{cdcsousitems}
+    \item Historique des réparations et reçus numériques
+    \item Conditions et durée de garantie
+    \item Rappels avant la fin de la garantie
+  \end{cdcsousitems}
+  \item \textbf{F11 – Observatoire des prix et statistiques du marché} (V2)
+  \begin{cdcsousitems}
+    \item Prix, pannes, délais et modèles analysés de façon agrégée
+  \end{cdcsousitems}
+  \item \textbf{F12 – Tableau de bord du propriétaire} (V1 et V2)
+  \begin{cdcsousitems}
+    \item Indicateurs d’activité, de revenus et de performance
+  \end{cdcsousitems}
+  \item \textbf{F13 – Interface adaptée au marché marocain} (V1 et V2)
+  \begin{cdcsousitems}
+    \item Français et arabe, puis darija
+  \end{cdcsousitems}
+\end{cdcitems}
+
+\cdcsubsection{Fiches descriptives des fonctions}
+
+\fichefonction{F1}{Gestion des boutiques et des utilisateurs}
+  {Donner à chaque acteur un espace adapté à son rôle et permettre à chaque propriétaire de publier et d’administrer sa boutique.}
+  {Chaque utilisateur s’inscrit, se connecte et gère son profil. Le propriétaire crée sa boutique, renseigne son adresse, ses horaires, ses services et ses tarifs, puis ajoute ses réparateurs en fixant leurs autorisations. L’administrateur gère l’ensemble des comptes et des boutiques.}
+  {\begin{cdccellitems}
+    \item Chaque utilisateur n’accède qu’aux fonctions autorisées par son rôle.
+    \item Le compte d’un réparateur est créé par le propriétaire de sa boutique.
+    \item Une boutique n’apparaît dans la recherche que si son adresse et ses services sont renseignés.
+    \item L’administrateur peut retirer une information publiée.
+  \end{cdccellitems}}
+  {\prioMust{} (version~1)}
+
+\fichefonction{F2}{Gestion des réparations}
+  {Tracer chaque appareil depuis sa réception jusqu’à sa restitution et prévenir les litiges sur son état initial.}
+  {À la réception, le réparateur enregistre le client, le modèle et la description de la panne, puis photographie l’état initial de l’appareil. Le client valide ces informations et reçoit un numéro de suivi unique. Le réparateur met ensuite à jour le statut à chaque étape et enregistre le coût final et les pièces utilisées.}
+  {\begin{cdccellitems}
+    \item Le numéro de suivi est unique sur toute la plateforme.
+    \item Le diagnostic ne commence qu’après la validation de l’état initial par le client.
+    \item Les photos validées ne peuvent plus être modifiées.
+    \item Les statuts suivent l’ordre défini en section~\ref{sec:cycles}.
+  \end{cdccellitems}}
+  {\prioMust{} (version~1)}
+
+\fichefonction{F3}{Suivi des réparations par WhatsApp}
+  {Tenir le client informé de l’avancement de sa réparation sans qu’il ait à installer d’application ni à se déplacer.}
+  {Le client consulte l’état de sa réparation sur une page web, à partir de son numéro de suivi. En version~2, chaque changement important de statut déclenche un message WhatsApp qui lui communique les informations essentielles, comme le prix et le délai confirmés ou la disponibilité de l’appareil.}
+  {\begin{cdccellitems}
+    \item Chaque message rappelle le numéro de suivi et donne accès à la page de suivi.
+    \item Un message n’est envoyé qu’à un client qui a accepté d’être notifié.
+  \end{cdccellitems}}
+  {\prioMust{} pour la consultation (version~1), \prioShould{} pour les notifications (version~2)}
+
+\fichefonction{F4}{Géolocalisation et recherche des boutiques}
+  {Aider le client à trouver la boutique la plus adaptée à son besoin, et pas seulement la plus proche.}
+  {Le client indique sa position et le type de panne. Les boutiques qui proposent le service apparaissent sur une carte interactive, et il peut filtrer les résultats, afficher l’itinéraire vers la boutique choisie et, éventuellement, réserver un rendez-vous.}
+  {\begin{cdccellitems}
+    \item La recherche est accessible sans compte.
+    \item La position n’est utilisée qu’avec l’autorisation du client. À défaut, il saisit une ville ou une adresse.
+    \item Seules les boutiques qui proposent le service recherché sont affichées.
+  \end{cdccellitems}}
+  {\prioMust{} (version~1), \prioCould{} pour la réservation de rendez-vous}
+
+\fichefonction{F5}{Diagnostic préliminaire intelligent}
+  {Donner au client, avant tout déplacement, une première idée des causes possibles, du prix et du délai de réparation.}
+  {Le client sélectionne le modèle de son téléphone et décrit les symptômes. La plateforme propose des causes possibles, une estimation indicative du prix et du délai, et recommande les boutiques capables de traiter le problème.}
+  {\begin{cdccellitems}
+    \item Le résultat est toujours présenté comme indicatif.
+    \item Le réparateur confirme la panne, le prix définitif et le délai après examen de l’appareil.
+  \end{cdccellitems}}
+  {\prioShould{} (version~2)}
+
+\fichefonction{F6}{Gestion des paiements}
+  {Permettre au client de payer en espèces ou par voie électronique et garantir que chaque paiement est fiable et traçable.}
+  {Le client choisit de payer en espèces à la boutique ou en ligne par un moyen électronique disponible au Maroc. La boutique déclare les paiements en espèces, le prestataire confirme les paiements électroniques. Chaque paiement est enregistré avec son statut, rattaché à la réparation et accompagné d’un reçu numérique.}
+  {\begin{cdccellitems}
+    \item Un paiement en espèces n’est confirmé qu’après sa déclaration par la boutique.
+    \item Un paiement électronique n’est confirmé qu’après la confirmation du prestataire.
+    \item Chaque paiement est associé à une seule réparation.
+    \item La plateforme ne conserve aucune donnée de carte bancaire.
+  \end{cdccellitems}}
+  {\prioMust{} (version~1), \prioShould{} pour la confirmation automatique en ligne (version~2)}
+
+\fichefonction{F7}{Gestion financière et des commissions}
+  {Donner au propriétaire une vision exacte de son chiffre d’affaires, de ses revenus et des commissions.}
+  {Les commissions sont calculées automatiquement à partir des paiements confirmés, selon les règles définies. Le propriétaire suit son chiffre d’affaires, les revenus générés par chaque réparateur et l’historique des transactions, et peut produire des rapports par période et par moyen de paiement.}
+  {\begin{cdccellitems}
+    \item Seuls les paiements au statut « payé » entrent dans les calculs.
+    \item Les commissions de la plateforme, si elles existent, sont définies clairement et affichées au propriétaire.
+  \end{cdccellitems}}
+  {\prioMust{} (version~1), \prioShould{} pour les rapports financiers}
+
+\fichefonction{F8}{Comparaison des boutiques}
+  {Aider le client à choisir une boutique selon ses besoins et son budget.}
+  {Le client compare plusieurs boutiques selon le prix estimé, le délai annoncé, la distance, les services proposés et les avis des autres clients.}
+  {\begin{cdccellitems}
+    \item Les prix comparés sont des estimations. Le prix définitif reste fixé par la boutique après examen.
+  \end{cdccellitems}}
+  {\prioShould{} (version~2)}
+
+\fichefonction{F9}{Avis et évaluations}
+  {Renforcer la confiance entre clients et boutiques grâce à des évaluations authentiques.}
+  {Après une réparation, le client note la boutique et peut publier un commentaire. Les autres clients consultent ces évaluations, et les avis signalés sont modérés par l’administrateur.}
+  {\begin{cdccellitems}
+    \item Seul un client dont la réparation a été livrée peut évaluer la boutique concernée.
+    \item Un avis signalé est examiné par l’administrateur, qui peut le retirer.
+  \end{cdccellitems}}
+  {\prioShould{} (version~2)}
+
+\fichefonction{F10}{Historique et garantie des réparations}
+  {Conserver la mémoire des interventions et permettre au client de faire valoir sa garantie.}
+  {La plateforme conserve l’historique des réparations et des reçus numériques. La boutique enregistre les conditions et la durée de garantie de chaque intervention, et le client peut recevoir un rappel avant la fin de celle-ci.}
+  {\begin{cdccellitems}
+    \item Les conditions et la durée de garantie sont fixées par la boutique.
+    \item Le client ne consulte que son propre historique.
+  \end{cdccellitems}}
+  {\prioShould{} (version~2), \prioCould{} pour les rappels}
+
+\fichefonction{F11}{Observatoire des prix et statistiques du marché}
+  {Éclairer les clients sur les prix du marché et aider les propriétaires à prendre de meilleures décisions.}
+  {À partir des réparations enregistrées, la plateforme calcule les prix moyens par ville, les pannes les plus fréquentes, les délais moyens, les modèles les plus réparés et les écarts de prix selon les pannes et les régions.}
+  {\begin{cdccellitems}
+    \item Les données sont présentées uniquement sous forme agrégée.
+    \item Un indicateur n’est publié que si les données sont suffisamment nombreuses et fiables.
+  \end{cdccellitems}}
+  {\prioShould{} (version~2)}
+
+\fichefonction{F12}{Tableau de bord du propriétaire}
+  {Offrir au propriétaire une vue synthétique de l’activité et des performances de sa boutique.}
+  {Le tableau de bord présente le nombre de réparations reçues, en cours et terminées, les revenus par période et les commissions. En version~2, il ajoute la répartition des paiements, les performances des réparateurs, les services les plus demandés, les délais moyens et les réparations en retard.}
+  {\begin{cdccellitems}
+    \item Un propriétaire ne voit que les données de sa propre boutique.
+  \end{cdccellitems}}
+  {\prioMust{} pour les indicateurs de base (version~1), \prioShould{} pour le tableau de bord avancé (version~2)}
+
+\fichefonction{F13}{Interface adaptée au marché marocain}
+  {Rendre la plateforme naturelle à utiliser pour les clients et les petites boutiques marocaines.}
+  {L’interface est proposée en français et en arabe, puis adaptée progressivement aux usages de la darija. Elle s’appuie sur des usages déjà répandus au Maroc, comme WhatsApp et le paiement en espèces.}
+  {\begin{cdccellitems}
+    \item L’interface en arabe s’affiche de droite à gauche.
+    \item Les montants sont exprimés en dirhams (MAD).
+  \end{cdccellitems}}
+  {\prioMust{} pour le français et l’arabe (version~1), \prioCould{} pour la darija}
+
+\cdcsubsection{Cycle de vie d’une réparation et d’un paiement}
+\label{sec:cycles}
+
+\cdcintertitre{Statuts d’une réparation}
+
+Une réparation passe successivement par cinq statuts. Seul le réparateur les met à jour, et chaque changement est horodaté et visible par le client.
+
+\begin{cdcetapes}
+  \item \textbf{Reçu.} L’appareil est enregistré, photographié, et son état initial est validé par le client.
+  \item \textbf{En diagnostic.} Le réparateur examine l’appareil et confirme la panne, le prix et le délai.
+  \item \textbf{En réparation.} L’intervention est en cours.
+  \item \textbf{Prêt à récupérer.} La réparation est terminée et le client peut venir chercher son appareil.
+  \item \textbf{Livré.} L’appareil a été restitué au client.
+\end{cdcetapes}
+
+\cdcintertitre{Statuts d’un paiement}
+
+Un paiement possède son propre statut, indépendant de celui de la réparation.
+
+\begin{cdcitems}
+  \item \textbf{En attente.} Le paiement est attendu ou en cours de traitement.
+  \item \textbf{Payé.} Le paiement est confirmé, par la déclaration de la boutique pour les espèces ou par le prestataire pour le paiement électronique.
+  \item \textbf{Échoué.} Le paiement électronique n’a pas abouti.
+  \item \textbf{Remboursé.} Le montant a été restitué au client.
+\end{cdcitems}
+
+\cdcsubsection{Scénario d’utilisation type}
+
+Le scénario suivant illustre l’enchaînement des fonctions pour un client de Rabat dont le téléphone ne charge plus.
+
+\begin{cdcetapes}
+  \item Le client ouvre la plateforme et sélectionne son modèle de téléphone (F5).
+  \item Il décrit son problème et obtient une estimation indicative du prix (F5).
+  \item La plateforme affiche les boutiques proches capables de réparer ce type de panne (F4).
+  \item Il compare les prix, les avis, les délais et les distances, puis choisit une boutique (F8).
+  \item Le réparateur reçoit le téléphone, enregistre ses informations et photographie son état initial (F2).
+  \item Le client valide les informations et reçoit un numéro de suivi (F2).
+  \item Le réparateur effectue le diagnostic et confirme le prix et le délai définitifs (F2).
+  \item Le client reçoit les mises à jour par WhatsApp (F3).
+  \item Une fois la réparation terminée, le client récupère son téléphone (F2).
+  \item Il choisit son moyen de paiement, en espèces à la boutique ou en ligne si ce moyen est disponible (F6).
+  \item Le paiement est enregistré et un reçu numérique est généré (F6).
+  \item Le propriétaire consulte les revenus, les commissions et les statistiques de son activité (F7, F12).
+  \item Le client laisse un avis sur la boutique (F9).
+\end{cdcetapes}
+
+\cdcsubsection{Synthèse et priorisation des exigences fonctionnelles}
+
+Le tableau ci-dessous recense les exigences fonctionnelles. Chacune est identifiée de façon unique et rattachée à sa fonction d’origine et à sa version de livraison.
+
+\begin{tableexigences}
+  EF-01 & Inscription, connexion et gestion du profil pour chaque type d’utilisateur & \prioMust & F1 – V1 \\
+  EF-02 & Création et configuration d’une boutique par son propriétaire & \prioMust & F1 – V1 \\
+  EF-03 & Ajout des réparateurs et gestion de leurs autorisations & \prioMust & F1 – V1 \\
+  EF-04 & Gestion de l’adresse, des horaires, des services et des tarifs de la boutique & \prioMust & F1 – V1 \\
+  EF-05 & Gestion des utilisateurs, des boutiques et des informations publiées par l’administrateur & \prioMust & F1 – V1 \\
+  EF-06 & Enregistrement d’un appareil reçu avec son modèle et la description de la panne & \prioMust & F2 – V1 \\
+  EF-07 & Prise de photos de l’état initial de l’appareil & \prioMust & F2 – V1 \\
+  EF-08 & Validation de l’état initial par le client & \prioMust & F2 – V1 \\
+  EF-09 & Attribution d’un numéro de suivi unique & \prioMust & F2 – V1 \\
+  EF-10 & Mise à jour du statut de la réparation & \prioMust & F2 – V1 \\
+  EF-11 & Confirmation de la panne, du prix et du délai définitifs par le réparateur & \prioMust & F2 – V1 \\
+  EF-12 & Enregistrement du coût final et des pièces utilisées & \prioMust & F2 – V1 \\
+  EF-13 & Consultation des réparations en cours et terminées par le propriétaire & \prioMust & F2 – V1 \\
+  EF-14 & Consultation de l’avancement par le client à partir du numéro de suivi, sans application à installer & \prioMust & F3 – V1 \\
+  EF-15 & Notification WhatsApp automatique à chaque changement important de statut & \prioShould & F3 – V2 \\
+  EF-16 & Affichage des boutiques sur une carte interactive & \prioMust & F4 – V1 \\
+  EF-17 & Recherche de boutiques selon la position du client & \prioMust & F4 – V1 \\
+  EF-18 & Filtrage par type de panne et services disponibles & \prioMust & F4 – V1 \\
+  EF-19 & Affichage de l’itinéraire vers la boutique sélectionnée & \prioMust & F4 – V1 \\
+  EF-20 & Réservation d’un rendez-vous auprès d’une boutique & \prioCould & F4 – V2 \\
+  EF-21 & Saisie du modèle et des symptômes pour un diagnostic préliminaire & \prioShould & F5 – V2 \\
+  EF-22 & Proposition de causes possibles & \prioShould & F5 – V2 \\
+  EF-23 & Estimation indicative du prix et du délai & \prioShould & F5 – V2 \\
+  EF-24 & Recommandation de boutiques capables de traiter le problème & \prioShould & F5 – V2 \\
+  EF-25 & Enregistrement d’un paiement en espèces par la boutique & \prioMust & F6 – V1 \\
+  EF-26 & Enregistrement d’une transaction électronique et de son statut & \prioMust & F6 – V1 \\
+  EF-27 & Paiement électronique intégré avec confirmation automatique par le prestataire & \prioShould & F6 – V2 \\
+  EF-28 & Gestion des statuts de paiement (en attente, payé, échoué, remboursé) & \prioMust & F6 – V1 \\
+  EF-29 & Génération d’un reçu numérique associé à la réparation & \prioMust & F6 – V1 \\
+  EF-30 & Historique des paiements, distinction espèces et électronique, montants encaissés par boutique & \prioMust & F6 – V1 \\
+  EF-31 & Calcul automatique des commissions selon les règles définies & \prioMust & F7 – V1 \\
+  EF-32 & Suivi du chiffre d’affaires et des revenus par réparateur & \prioMust & F7 – V1 \\
+  EF-33 & Rapports financiers par période et par moyen de paiement & \prioShould & F7 – V2 \\
+  EF-34 & Comparaison des boutiques par prix estimé, délai, distance, services et avis & \prioShould & F8 – V2 \\
+  EF-35 & Aide au choix d’une boutique selon les besoins et le budget du client & \prioShould & F8 – V2 \\
+  EF-36 & Notation et commentaire d’une boutique après une réparation livrée & \prioShould & F9 – V2 \\
+  EF-37 & Consultation des évaluations des autres clients & \prioShould & F9 – V2 \\
+  EF-38 & Signalement et modération des avis & \prioShould & F9 – V2 \\
+  EF-39 & Conservation et consultation de l’historique des réparations et des reçus & \prioShould & F10 – V2 \\
+  EF-40 & Enregistrement des conditions et de la durée de garantie & \prioShould & F10 – V2 \\
+  EF-41 & Rappel au client avant la fin de la garantie & \prioCould & F10 – V2 \\
+  EF-42 & Prix moyens de réparation par ville & \prioShould & F11 – V2 \\
+  EF-43 & Pannes les plus fréquentes et modèles les plus réparés & \prioShould & F11 – V2 \\
+  EF-44 & Délais moyens de réparation & \prioShould & F11 – V2 \\
+  EF-45 & Différences de prix selon les types de pannes et les régions & \prioShould & F11 – V2 \\
+  EF-46 & Présentation exclusivement agrégée des statistiques & \prioMust & F11 – V2 \\
+  EF-47 & Indicateurs de base du propriétaire (réparations reçues, en cours, terminées, revenus, commissions) & \prioMust & F12 – V1 \\
+  EF-48 & Tableau de bord avancé (répartition des paiements, performances des réparateurs, services demandés, délais, retards) & \prioShould & F12 – V2 \\
+  EF-49 & Interface en français et en arabe & \prioMust & F13 – V1 \\
+  EF-50 & Adaptation progressive aux usages de la darija & \prioCould & F13 – V2 \\
+  EF-51 & Application mobile native & \prioWont & Hors périmètre \\
+\end{tableexigences}

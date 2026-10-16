@@ -1,0 +1,40 @@
+% Maquette 4 : suivi et paiement d'une réparation (client, smartphone)
+\begin{tikzpicture}
+  \draw[mq ecran] (0,0) rectangle (6.6,-11.6);
+  \fill[mq barre] (0.08,-0.08) [rounded corners=7pt] -- (0.08,-0.95) [sharp corners] -- (6.52,-0.95) [rounded corners=7pt] -- (6.52,-0.08) [sharp corners] -- cycle;
+  \node[mq titre] at (0.35,-0.33) {Qribna};
+  \node[mq texte, anchor=north east] at (6.25,-0.33) {FR | AR};
+
+  \node[mq titre] at (0.35,-1.25) {Suivi de votre réparation};
+  \node[mq gris] at (0.35,-1.8) {N° de suivi XXXX-XXXX \quad Boutique A};
+
+  % frise des statuts
+  \draw[black!35, line width=1.2pt] (0.6,-2.6) -- (0.6,-5.8);
+  \draw[black, line width=1.2pt] (0.6,-2.6) -- (0.6,-4.2);
+  \foreach \y/\statut/\etat in {-2.6/Reçu/1, -3.4/En diagnostic/1, -4.2/En réparation/2,
+                                -5.0/Prêt à récupérer/0, -5.8/Livré/0} {
+    \ifcase\etat
+      \draw[black!35, line width=1pt, fill=white] (0.6,\y) circle (0.15);
+      \node[mq gris, anchor=west] at (1.0,\y) {\statut};
+    \or
+      \fill[black] (0.6,\y) circle (0.15);
+      \node[mq texte, anchor=west] at (1.0,\y) {\statut};
+    \or
+      \draw[black, line width=1.6pt, fill=white] (0.6,\y) circle (0.15);
+      \node[mq titre, anchor=west] at (1.0,\y) {\statut};
+    \fi
+  }
+  \node[mq gris, anchor=east] at (6.25,-2.6) {jj/mm};
+  \node[mq gris, anchor=east] at (6.25,-3.4) {jj/mm};
+  \node[mq gris, anchor=east] at (6.25,-4.2) {en cours};
+
+  \draw[mq cadre, fill=black!4] (0.35,-6.4) rectangle (6.25,-7.9);
+  \node[mq texte] at (0.55,-6.6) {\textbf{Prix confirmé}\enspace xxx MAD};
+  \node[mq texte] at (0.55,-7.1) {\textbf{Délai confirmé}\enspace x jours};
+  \node[mq gris] at (0.55,-7.55) {Garantie x mois};
+
+  \node[mq titre] at (0.35,-8.3) {Moyen de paiement};
+  \node[mq bouton2, minimum width=5.9cm] at (3.3,-9.3) {Espèces à la boutique};
+  \node[mq bouton, minimum width=5.9cm] at (3.3,-10.3) {Payer en ligne};
+  \node[mq gris, anchor=north] at (3.3,-10.85) {Reçu numérique après confirmation};
+\end{tikzpicture}

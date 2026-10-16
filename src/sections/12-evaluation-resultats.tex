@@ -1,0 +1,37 @@
+\cdcsection{Évaluation des résultats}
+\label{sec:evaluation}
+
+\cdcsubsection{Indicateurs d’évaluation}
+
+Les indicateurs ci-dessous mesurent l’atteinte des résultats attendus (section~\ref{sec:resultats}). Ils sont calculés directement à partir des données de la plateforme.
+
+\begin{cdctableau}{LLP{1.2cm}}{\cdcth{Indicateur} & \cdcth{Mode de mesure} & \cdcth{Obj.}}
+  Taux d’appareils suivis & Réparations dotées d’un numéro de suivi, rapportées au nombre d’appareils reçus & O1 \\
+  Taux de validation de l’état initial & Réparations dont les photos ont été validées par le client avant le statut « en diagnostic » & O3 \\
+  Taux de notifications délivrées & Accusés de remise fournis par l’API WhatsApp Business, rapportés aux changements de statut & O2 \\
+  Écart entre estimation et prix final & Comparaison du prix indicatif du diagnostic préliminaire et du prix confirmé par le réparateur & O5 \\
+  Délai moyen de réparation & Durée entre les statuts « reçu » et « prêt à récupérer », calculée à partir des horodatages & O2, O8 \\
+  Taux de paiements rapprochés & Paiements au statut « payé » rattachés à une réparation, rapportés au total des paiements & O6, O7 \\
+  Répartition des moyens de paiement & Part des paiements en espèces et des paiements électroniques & O6 \\
+  Note moyenne des boutiques & Moyenne des évaluations publiées après une réparation livrée & O4 \\
+\end{cdctableau}
+
+\cdcsubsection{Recette et critères de validation}
+
+La recette vérifie que la plateforme livrée est conforme à ce cahier des charges. Elle se déroule en trois niveaux.
+
+\begin{cdcetapes}
+  \item \textbf{Tests unitaires} sur les règles de gestion critiques (enchaînement des statuts, confirmation des paiements, calcul des commissions).
+  \item \textbf{Tests d’intégration} avec les services externes, en environnement de test (WhatsApp, cartographie, prestataire de paiement).
+  \item \textbf{Recette fonctionnelle} à partir du scénario d’utilisation type et d’un cahier de recette qui associe au moins un cas de test à chaque exigence.
+\end{cdcetapes}
+
+Une version est déclarée conforme lorsque les critères suivants sont réunis.
+
+\begin{cdcitems}
+  \item Toutes les exigences \prioMust{} de la version sont validées.
+  \item Aucune anomalie bloquante ou majeure ne reste ouverte.
+  \item Les exigences non fonctionnelles \prioMust{} sont vérifiées.
+  \item Les valeurs cibles des résultats attendus de la version sont atteintes sur les données de recette.
+  \item Le procès-verbal de recette est signé par l’équipe et l’encadrant.
+\end{cdcitems}

@@ -1,0 +1,51 @@
+% Maquette 5 : tableau de bord du propriétaire (ordinateur)
+\begin{tikzpicture}
+  \draw[mq ecran, rounded corners=4pt] (0,0) rectangle (15.6,-10);
+  \fill[mq barre] (0.05,-0.05) rectangle (15.55,-0.8);
+  \node[mq titre] at (0.3,-0.25) {Qribna};
+  \node[mq texte, anchor=north east] at (15.3,-0.25) {Boutique A \quad FR | AR};
+
+  % menu latéral
+  \draw[black!20] (3.2,-0.8) -- (3.2,-10);
+  \fill[black!8] (0.05,-1.1) rectangle (3.15,-1.65);
+  \foreach \i/\entree in {0/Tableau de bord, 1/Réparations, 2/Réparateurs, 3/Paiements,
+                          4/Commissions, 5/Statistiques, 6/Ma boutique}
+    \node[mq texte] at (0.3,-1.2-\i*0.75) {\entree};
+
+  % indicateurs
+  \foreach \i/\libelle/\valeur in {0/Reçues/xx, 1/En cours/xx, 2/Terminées/xx, 3/Revenus/xxx MAD} {
+    \draw[mq cadre] (3.5+\i*3.0,-1.1) rectangle ++(2.75,-1.45);
+    \node[mq gris] at (3.7+\i*3.0,-1.3) {\libelle};
+    \node[mq texte, font=\large\bfseries] at (3.7+\i*3.0,-1.85) {\valeur};
+  }
+
+  % revenus par période
+  \draw[mq cadre] (3.5,-2.85) rectangle (10.15,-6.65);
+  \node[mq titre] at (3.7,-3.05) {Revenus par période};
+  \draw[black!45] (3.9,-6.25) -- (9.9,-6.25);
+  \foreach \i/\h/\teinte in {0/1.2/30, 1/1.8/30, 2/1.5/30, 3/2.3/30, 4/2.0/30, 5/2.6/75}
+    \fill[black!\teinte] (4.25+\i*0.95,-6.25) rectangle ++(0.55,\h);
+
+  % répartition des paiements
+  \draw[mq cadre] (10.45,-2.85) rectangle (15.25,-6.65);
+  \node[mq titre] at (10.65,-3.05) {Répartition des paiements};
+  \fill[black!75] (10.75,-4.0) rectangle (13.4,-4.6);
+  \fill[black!25] (13.4,-4.0) rectangle (14.95,-4.6);
+  \fill[black!75] (10.75,-5.05) rectangle ++(0.3,-0.3);
+  \node[mq texte] at (11.2,-5.03) {Espèces xx\,\%};
+  \fill[black!25] (10.75,-5.6) rectangle ++(0.3,-0.3);
+  \node[mq texte] at (11.2,-5.58) {Électronique xx\,\%};
+
+  % performances des réparateurs
+  \draw[mq cadre] (3.5,-6.95) rectangle (15.25,-9.7);
+  \node[mq titre] at (3.7,-7.15) {Performances des réparateurs};
+  \foreach \x/\entete in {3.7/Réparateur, 7.4/Réparations, 10.0/Revenus, 12.6/Délai moyen}
+    \node[mq gris] at (\x,-7.65) {\entete};
+  \draw[black!45] (3.7,-8.1) -- (15.05,-8.1);
+  \foreach \j/\n in {0/1, 1/2} {
+    \node[mq texte] at (3.7,-8.3-\j*0.6) {Réparateur \n};
+    \node[mq texte] at (7.4,-8.3-\j*0.6) {xx};
+    \node[mq texte] at (10.0,-8.3-\j*0.6) {xxx MAD};
+    \node[mq texte] at (12.6,-8.3-\j*0.6) {x j};
+  }
+\end{tikzpicture}

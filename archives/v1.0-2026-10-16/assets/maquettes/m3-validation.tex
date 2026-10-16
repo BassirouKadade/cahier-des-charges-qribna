@@ -1,0 +1,27 @@
+% Maquette 3 : validation de l'état initial (client, smartphone)
+\begin{tikzpicture}
+  \draw[mq ecran] (0,0) rectangle (6.6,-11.6);
+  \fill[mq barre] (0.08,-0.08) [rounded corners=7pt] -- (0.08,-0.95) [sharp corners] -- (6.52,-0.95) [rounded corners=7pt] -- (6.52,-0.08) [sharp corners] -- cycle;
+  \node[mq titre] at (0.35,-0.33) {Qribna};
+  \node[mq texte, anchor=north east] at (6.25,-0.33) {FR | AR};
+
+  \node[mq titre] at (0.35,-1.25) {Validez l’état de votre téléphone};
+  \node[mq gris] at (0.35,-1.8) {Boutique A};
+
+  \draw[mq cadre] (0.35,-2.35) rectangle (6.25,-4.0);
+  \node[mq texte] at (0.55,-2.55) {\textbf{Modèle}\enspace Modèle du téléphone};
+  \node[mq texte] at (0.55,-3.05) {\textbf{Panne}\enspace Ne charge plus};
+  \node[mq texte] at (0.55,-3.5) {\textbf{État}\enspace Rayure sur l’écran};
+
+  \node[mq titre] at (0.35,-4.35) {Photos prises par le réparateur};
+  \mqphoto{0.35}{-4.8}{1.8}
+  \mqphoto{2.4}{-4.8}{1.8}
+  \mqphoto{4.45}{-4.8}{1.8}
+
+  \draw[black, line width=0.8pt] (0.35,-7.05) rectangle ++(0.38,-0.38);
+  \draw[black, line width=1.2pt] (0.43,-7.25) -- (0.53,-7.35) -- (0.66,-7.12);
+  \node[mq texte] at (0.95,-7.05) {Je confirme l’état initial\\décrit et photographié.};
+
+  \node[mq bouton2, minimum width=2.8cm] at (1.75,-10.85) {Contester};
+  \node[mq bouton, minimum width=2.8cm] at (4.85,-10.85) {Valider};
+\end{tikzpicture}

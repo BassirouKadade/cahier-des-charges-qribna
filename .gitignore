@@ -1,0 +1,20 @@
+# Fichiers auxiliaires de compilation LaTeX (régénérés par latexmk)
+build/*
+!build/main.pdf
+
+# Auxiliaires éventuels hors de build/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Fichiers temporaires de Word
+~$*.docx
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini

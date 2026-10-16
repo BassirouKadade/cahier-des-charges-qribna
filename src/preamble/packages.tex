@@ -1,0 +1,23 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[expansion=false]{microtype} % NE PAS activer l'expansion
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+% Ajouts propres au cahier des charges :
+\usepackage{longtable}          % tableaux d'exigences sur plusieurs pages
+\usepackage{array}
+\usepackage{tikz}               % maquettes filaires (assets/maquettes/)
+\usetikzlibrary{babel}          % compatibilité avec les caractères actifs de babel-french
+\usepackage{titlesec}           % style des titres de section
+\usepackage{titletoc}           % style de la table des matières
+\usepackage{pdfpages}           % page de garde importée en PDF
+\usepackage{fancyhdr}           % en-tête / pied de page
+\usepackage{lastpage}           % « page X sur Y »
+\usepackage{tcolorbox}          % encadrés (note, attention, exigence)
+\tcbuselibrary{skins,breakable}
+\usepackage[hidelinks]{hyperref} % TOUJOURS charger en dernier
