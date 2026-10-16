@@ -62,7 +62,7 @@ $d.ExportAsFixedFormat("$PWD\docs\page-de-garde.pdf", 17); $d.Close($false); $w.
 - Dans les clés tcolorbox (`before upper`), une espace finale est supprimée : écrire `\ `.
 - Le dernier argument de `\titlecontents` n’accepte pas `\par` : utiliser `\endgraf`.
 - Styles de page : `cdc` (style courant) et `tdm` sont des `\fancypagestyle` autonomes. Revenir avec `\pagestyle{cdc}`, jamais avec `\pagestyle{fancy}`.
-- Pas de `git init` sans demande explicite.
+- Dépôt Git public : https://github.com/BassirouKadade/cahier-des-charges-qribna (branche `main`, via `gh`). Après chaque modification : recompiler, vérifier le log, puis `git add -A`, `git commit`, `git push` sans attendre que l’utilisateur le fasse. `build/main.pdf` est versionné, le reste de `build/` est ignoré.
 - Les tableaux longtable coupés entre deux pages produisent « ignored error: Infinite glue shrinkage » (noyau LaTeX 2025) : sans effet sur le rendu. Ne pas utiliser xltabular (même message, plus des erreurs avec booktabs).
 - TikZ : pas de `\ifnum`/`\ifcase` dans les options ou le corps d’un `\foreach` (boucle infinie à la compilation) ; passer les valeurs dans la liste du `\foreach`.
 - `\hbadness=4000` : sans césure, les lignes justifiées légèrement espacées sont normales ; seules les vraies anomalies sont signalées.
