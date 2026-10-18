@@ -1,0 +1,15 @@
+# docker compose run --rm pdf     -> compile build/main.pdf
+# docker compose run --rm watch   -> recompile à chaque enregistrement
+services:
+  pdf:
+    build: .
+    image: cahier-des-charges-qribna
+    volumes:
+      - .:/doc
+    command: latexmk
+
+  watch:
+    image: cahier-des-charges-qribna
+    volumes:
+      - .:/doc
+    command: latexmk -pvc -view=none
