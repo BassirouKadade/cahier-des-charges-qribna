@@ -2,10 +2,81 @@
 
 \cdcsubsection{Contexte du projet}
 
+Au Maroc, la réparation de téléphones est un service de proximité, assuré en grande partie par de petites boutiques de quartier. Les clients y recourent pour prolonger la vie de leur appareil et éviter le coût d’un remplacement. Ces boutiques fonctionnent le plus souvent sans outil numérique. Les échanges se font de vive voix, par téléphone ou par message, et les informations sont notées sur papier ou retenues de mémoire.
+
+Cette organisation suffit tant que l’activité reste faible. Elle atteint ses limites dès que plusieurs réparateurs interviennent, que les appareils restent plusieurs jours en boutique ou que le propriétaire gère plusieurs points de réparation.
+
+\docapp{} est une plateforme web qui relie les clients, les réparateurs et les propriétaires de boutiques. Elle digitalise la gestion des réparations en boutique et aide le client à trouver le réparateur adapté à sa panne, à suivre sa réparation et à payer simplement. Le projet est réalisé par une équipe de cinq étudiants de l’INSEA dans le cadre du module de génie logiciel.
+
 \cdcsubsection{Situation actuelle des boutiques}
+
+Une réparation suit le même parcours dans toutes les boutiques. L’appareil est reçu, la panne décrite puis diagnostiquée, le prix annoncé, puis l’appareil est réparé, payé et restitué. Aucune de ces étapes n’est aujourd’hui enregistrée de manière structurée, ce qui crée des difficultés pour chacune des parties.
+
+\cdcintertitre{Pour la boutique}
+
+\begin{cdcdefinitions}
+  \item[Informations perdues] Les fiches papier se perdent ou restent incomplètes. Retrouver un appareil, une panne ou un client prend du temps et retarde les réparations.
+  \item[État initial contesté] Sans photo ni état accepté par le client à la réception, rien ne permet de prouver qu’une rayure ou une fissure existait avant la prise en charge.
+  \item[Revenus opaques] Le propriétaire ne connaît précisément ni les montants encaissés, ni le travail de chaque réparateur, ni les commissions qui en découlent.
+\end{cdcdefinitions}
+
+\cdcintertitre{Pour le client}
+
+\begin{cdcdefinitions}
+  \item[Choix à l’aveugle] Le client ne sait pas quelle boutique traite sa panne, ni combien coûtera la réparation avant de se déplacer.
+  \item[Suivi inexistant] Pour connaître l’avancement des travaux, il doit appeler ou passer à la boutique.
+  \item[Paiement sans trace] Il ne peut pas toujours choisir son moyen de paiement et ne conserve souvent ni reçu ni trace de la garantie accordée.
+\end{cdcdefinitions}
+
+\cdcintertitre{Pour le marché}
+
+\begin{cdcdefinitions}
+  \item[Prix sans repère] Les données restent dispersées dans chaque boutique. Personne ne connaît les prix moyens par ville, les pannes les plus fréquentes ni les délais habituels.
+\end{cdcdefinitions}
 
 \cdcsubsection{Analyse des solutions existantes}
 
+Quatre types de solutions répondent aujourd’hui, chacune en partie, à ces difficultés.
+
+\begin{cdctableau}{P{4.2cm}LL}{\cdcth{Solution} & \cdcth{Ce qu’elle apporte} & \cdcth{Ce qui lui manque}}
+  Cahier, mémoire et appels téléphoniques & Aucun coût et aucune formation. & Aucune trace fiable, aucune preuve de l’état initial, aucun suivi pour le client ni vision des revenus. \\
+  \cdcsep Messageries et tableurs (WhatsApp, Excel) & Outils gratuits, déjà maîtrisés, et échange rapide avec le client. & Informations saisies à la main et dispersées, sans lien entre la réparation, le paiement et la commission. \\
+  \cdcsep Logiciels internationaux de gestion des réparations (RepairDesk) & Dossiers, clients et opérations de la boutique centralisés. & Payants et pensés pour d’autres marchés. Ils ne servent que la boutique et n’aident pas le client à trouver un réparateur. \\
+  \cdcsep Cartes et annuaires en ligne (Google Maps) & Localisation des boutiques proches et avis des clients. & Ni les pannes traitées, ni les prix, ni les délais. Aucun suivi après le dépôt de l’appareil. \\
+\end{cdctableau}
+
+Ces solutions servent soit la boutique, soit le client qui cherche un réparateur, jamais les deux à la fois. Aucune ne réunit dans un même service la gestion de la boutique, l’accompagnement du client et la connaissance des prix du marché marocain. C’est cet espace que vise \docapp.
+
 \cdcsubsection{Problématique}
 
+Le problème ne vient pas d’un manque d’outils, mais de leur dispersion. La boutique et le client ne partagent aucune information fiable sur la réparation qui les lie, du dépôt de l’appareil jusqu’au paiement. Ce cahier des charges répond donc à la question suivante.
+
+\begin{cdcquestion}
+Comment donner aux petites boutiques marocaines de réparation de téléphones un outil simple pour gérer leurs réparations, leurs équipes et leurs revenus de manière traçable, tout en offrant aux clients une visibilité sur l’état de leur appareil, l’avancement des travaux et les prix pratiqués~?
+\end{cdcquestion}
+
+Pour être adoptée, la réponse doit rester accessible aux petites boutiques, établir la confiance entre la boutique et le client, et respecter les habitudes locales (français et arabe, WhatsApp, paiement en espèces). Le client, lui, ne doit avoir aucune application à installer.
+
 \cdcsubsection{Apport et différenciation de \docapp}
+
+\docapp{} réunit dans une seule plateforme trois dimensions aujourd’hui séparées.
+
+\begin{cdcdefinitions}
+  \item[Gestion de la boutique] Enregistrement des appareils, état initial photographié et validé, suivi des statuts, paiements et commissions.
+  \item[Expérience du client] Recherche selon la panne, diagnostic préliminaire, comparaison des boutiques, suivi par WhatsApp et choix du moyen de paiement.
+  \item[Analyse du marché] Observatoire des prix, des pannes et des délais, fondé sur des données agrégées.
+\end{cdcdefinitions}
+
+Chaque difficulté relevée en section~1.2 trouve une réponse précise.
+
+\begin{cdctableau}{P{4.2cm}L}{\cdcth{Difficulté} & \cdcth{Réponse de \docapp}}
+  Informations perdues & Chaque appareil reçoit un dossier et un numéro de suivi unique. Son statut (reçu, en diagnostic, en réparation, prêt à récupérer, livré) est mis à jour à chaque étape. \\
+  \cdcsep État initial contesté & Le réparateur photographie l’appareil à la réception, et le client valide ces informations avant toute intervention. \\
+  \cdcsep Revenus opaques & Chaque paiement est rattaché à une réparation, les commissions sont calculées automatiquement et un tableau de bord présente les revenus et les performances des réparateurs. \\
+  \cdcsep Choix à l’aveugle & La recherche géolocalisée retient les boutiques qui traitent la panne. Le diagnostic préliminaire estime le prix et le délai, et la comparaison porte sur la distance, les prix, les délais et les avis. \\
+  \cdcsep Suivi inexistant & Le client suit sa réparation grâce à son numéro de suivi et reçoit des notifications WhatsApp, sans installer d’application. \\
+  \cdcsep Paiement sans trace & Le client paie en espèces ou par voie électronique et reçoit un reçu numérique. L’historique conserve les interventions et les garanties. \\
+  \cdcsep Prix sans repère & L’observatoire publie, à partir de données agrégées, les prix moyens par ville, les pannes les plus fréquentes et les délais moyens. \\
+\end{cdctableau}
+
+La force de \docapp{} tient moins à une fonction isolée qu’à leur enchaînement. Les informations que la boutique saisit pour gérer ses réparations alimentent à la fois le suivi du client et l’observatoire du marché, sans saisie supplémentaire. La plateforme est enfin conçue pour le Maroc, avec une interface en français et en arabe, une adaptation progressive à la darija, des notifications WhatsApp et le paiement en espèces.

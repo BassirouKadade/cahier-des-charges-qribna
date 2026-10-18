@@ -33,7 +33,7 @@ $d.ExportAsFixedFormat("$PWD\docs\page-de-garde.pdf", 17); $d.Close($false); $w.
 - `\fichefonction{ID}{Intitulé}{Objectif}{Description}{Contraintes / règles de gestion}{Priorité}` : grille du professeur (partie 4.2), tableau insécable avec en-tête « Fonction ID – Intitulé » en marine.
 - `\prioMust`, `\prioShould`, `\prioCould`, `\prioWont` : priorités MoSCoW, distinguées par la graisse ou l’italique.
 - `\begin{tableexigences} ID & Exigence & Priorité & Source \\ \end{tableexigences}` : longtable avec en-tête répété.
-- `\begin{note}…\end{note}`, `\begin{attention}…\end{attention}` : encadrés (fond blanc, filet marine à gauche).
+- `\begin{note}…\end{note}`, `\begin{attention}…\end{attention}` : encadrés (fond blanc, filet marine à gauche). `\begin{cdcquestion}…\end{cdcquestion}` : même encadré sans libellé, pour la question de la problématique.
 - `\begin{cdctableau}{P{3cm}L}{\cdcth{A} & \cdcth{B}} … \end{cdctableau}` : tableau générique sécable (longtable). Colonnes `P{largeur}` et `L` (largeur restante partagée) uniquement. `\cdcsep` espace deux rangées.
 - `\groupeexigences{Titre}` : rangée d’intertitre dans `tableexigences`.
 - `\begin{cdcitems}\item …\end{cdcitems}` : puces compactes ; `cdcsousitems` (tirets) pour un second niveau ; `cdcetapes` pour une liste numérotée ; `cdccellitems` pour des puces dans une cellule.

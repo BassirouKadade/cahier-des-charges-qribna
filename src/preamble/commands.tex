@@ -265,6 +265,8 @@
   before upper={\textbf{Note}~:\ }}
 \newtcolorbox{attention}{cdcencadre,
   before upper={\textbf{Attention}~:\ }}
+% Question mise en exergue (problématique), sans libellé.
+\newtcolorbox{cdcquestion}{cdcencadre}
 
 % --- Listes compactes -----------------------------------------------------------
 \newenvironment{cdcitems}%
@@ -285,7 +287,9 @@
 
 % --- Intertitre de paragraphe ---------------------------------------------------
 % \cdcintertitre{Titre} : gras, non numéroté, absent de la table des matières.
-\newcommand{\cdcintertitre}[1]{\par\addvspace{6pt}\noindent\textbf{#1}\par\nopagebreak}
+% \@afterheading empêche aussi la coupure avant une liste qui suit l'intertitre.
+\newcommand{\cdcintertitre}[1]{\par\addvspace{6pt}\noindent\textbf{#1}\par\nopagebreak
+  \csname @afterheading\endcsname}
 
 % --- Ligne « Libellé : texte » ---------------------------------------------------
 \newcommand{\cdcdetail}[2]{\par\noindent\textbf{#1}~: #2\par}
